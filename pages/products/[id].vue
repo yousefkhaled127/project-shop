@@ -1,316 +1,180 @@
 <template>
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <h5>{{ product.name }}</h5>
-          <div class="mt-4">
-            <h6>وصف المنتج</h6>
-            <p class="active-white mt-2">{{ product.description }}</p>
-            <form class="mt-5">
-              <label for="">المقاس</label>
-              <div class="d-flex gap-3">
-                <label v-for="sizeItem in product.sizes" :key="sizeItem.id">
-                  <input
-                    v-model="size"
-                    class="input-radio radio-size"
-                    type="radio"
-                    :id="sizeItem.id"
-                    name="radio-size"
-                    :value="sizeItem.id"
-                  />
-                  <!-- :checked="sizeItem.id === 2" -->
-                  <label class="box-size" :for="sizeItem.id">{{ sizeItem.size }}</label>
-                </label>
-              </div>
-              <button @click.prevent="clickk">click</button>
-            </form>
+    <section>
+        <div class="container">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+                aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page"><nuxt-link to="/">Home</nuxt-link> <font-awesome-icon
+                            icon="fa-solid fa-angle-right" /></li>
 
-            <div class="mt-5 d-flex gap-3 align-items-center">
-              <h5>الكميه</h5>
-              <button @click="number++" class="box-size">
-                <font-awesome-icon icon="fa-solid fa-plus" />
-              </button>
-              <h5>{{ number }}</h5>
-              <button @click="minus" class="box-size">
-                <font-awesome-icon icon="fa-solid fa-minus" />
-              </button>
-            </div>
-            <div class="mt-4">
-              <div class="d-flex gap-4 mb-4">
-                <h4 v-if="product.price_after_discount" class="discount-text active-white">{{ product.price_before_discount }} ر.س</h4>
-                <h4 v-if="!product.price_after_discount">{{ product.price_before_discount }} ر.س</h4>
-                <h4 v-if="product.price_after_discount">{{ product.price_after_discount }} ر.س</h4>
-              </div>
-              <p v-if="product.time_remaining" class="color-red mt-2">{{ product.time_remaining }}</p>
-            </div>
+                    <li class="breadcrumb-item active" aria-current="page">Shop <font-awesome-icon
+                            icon="fa-solid fa-angle-right" /></li>
+                    <li class="breadcrumb-item active" aria-current="page">Men <font-awesome-icon
+                            icon="fa-solid fa-angle-right" /></li>
+                    <li class="breadcrumb-item black">T-shirts</li>
+                </ol>
+            </nav>
             <div class="mt-5">
-              <!-- <h4 class="mb-5">{{ product.price_before_discount }} ر.س</h4> -->
-              <h5>صور توضيحية لطريقة قياس المنتج</h5>
-              <div class="mt-3 item-product">
-                <div></div>
-                <!-- <div class="d-flex gap-3" v-for="img in images" :key="img.id"> -->
-                  <!-- <img :src="img.image" alt=""> -->
-                  <!-- <img
-                    class="item-img-product"
-                    src="../../assets/images/Rectangle 25928.png"
-                    alt=""
-                  />
-                  <img
-                    class="item-img-product"
-                    src="../../assets/images/Rectangle 25928.png"
-                    alt=""
-                  />
-                  <img
-                    class="item-img-product"
-                    src="../../assets/images/Rectangle 25928.png"
-                    alt=""
-                  /> -->
-                <!-- </div> -->
-
-                <button class="bton-love" @click="submitFavourite">
-                  <font-awesome-icon v-if="!product.is_favorite" icon="fa-regular fa-heart" />
-                  <font-awesome-icon v-if="product.is_favorite" icon="fa-solid fa-heart" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="position-relative">
-            <div class="btons-prev-next">
-              <button @click="prevImage" class="next-button">
-                <font-awesome-icon icon="fa-solid fa-angle-right" />
-              </button>
-              <button @click="nextImage" class="prev-button">
-                <font-awesome-icon icon="fa-solid fa-angle-left" />
-              </button>
-            </div>
-
-
-            <Galleria
-             v-model:activeIndex="activeIndex"
-             :value="images" 
-             :responsiveOptions="responsiveOptions"
-             :numVisible="5" 
-             containerStyle="max-width: 640px"
-            :circular="true" :autoPlay="false" 
-            :transitionInterval="3000"
-            >
-            <template #item="{ item }">
-                <span class="rival-Sallery">% {{ product.discount }}</span>
-                <Image :src="item.image" :alt="item.alt" class="fancyImg" preview style="width: 100%; display: block; cursor: pointer;" />
-              </template>
-            <template #thumbnail="{ item }">
-              <img loading="lazy" :src="item.image" :alt="item.alt" style="display: block" />
-            </template>
-            </Galleria>
-
-
-
-
-
-<!-- 
-            <Galleria
-              :value="images"
-              :responsiveOptions="responsiveOptions"
-              :numVisible="5"
-              :circular="true"
-              containerStyle="max-width: 640px"
-              :activeIndex="activeIndex"
-              @update:activeIndex="onActiveIndexChange"
-            >
-              <template #item="{ item }">
-                <div class="gallery-inner">
-                  <span class="rival-Sallery">10%</span>
-                  <img
-                    :src="item.image"
-                    :alt="item.alt"
-                    style="width: 100%; display: block"
-                  />
+                <div class="row">
+                    <div class="col-lg-6">
+                        <Galleria :value="image" :responsiveOptions="responsiveOptions" :numVisible="5"
+                            containerStyle="max-width: 640px" :circular="true" :autoPlay="false"
+                            :transitionInterval="3000">
+                            <template #item="{ item }">
+                                <Image :src="item.image" :alt="item.alt" class="fancyImg" preview
+                                    style="width: 100%; display: block; cursor: pointer;" />
+                            </template>
+                            <template #thumbnail="{ item }">
+                                <img loading="lazy" :src="item.image" :alt="item.alt" style="display: block" />
+                            </template>
+                        </Galleria>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="inner-product">
+                            <h1 class="bold">{{ product.title }}</h1>
+                            <div class="d-flex gap-2 align-items-center mt-3">
+                                <p class="d-flex gap-1">
+                                    <font-awesome-icon class="star-icon" icon="fa-solid fa-star" />
+                                    <font-awesome-icon class="star-icon" icon="fa-solid fa-star" />
+                                    <font-awesome-icon class="star-icon" icon="fa-solid fa-star" />
+                                    <font-awesome-icon class="star-icon" icon="fa-solid fa-star" />
+                                    <font-awesome-icon class="star-icon" icon="fa-solid fa-star" />
+                                </p>
+                                <p v-if="product.rating">{{ product.rating.rate }}/5</p>
+                            </div>
+                            <h2 class="mt-3">${{ product.price }}</h2>
+                            <p class="color-trans mt-3">{{ product.description }}</p>
+                            <div class="d-flex align-items-center mt-5 gap-4 ">
+                                <div class="calc-prudact">
+                                    <button @click="minus" class="box-size">
+                                        <font-awesome-icon icon="fa-solid fa-minus" />
+                                    </button>
+                                    <h5>{{ number }}</h5>
+                                    <button @click="number++" class="box-size">
+                                        <font-awesome-icon icon="fa-solid fa-plus" />
+                                    </button>
+                                </div>
+                                <button @click="addCart" class="button-all button-add-card">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </template>
-              <template #thumbnail="{ item }">
-                <img
-                  :src="item.thumbnail"
-                  :alt="item.alt"
-                  style="width: 100%; display: block"
-                />
-              </template>
-            </Galleria> -->
-          </div>
-          <div class="btons-product">
-            <button @click="popup = true" class="button-all">تاجير</button>
-            <button class="button-all button-bord">
-              <font-awesome-icon icon="fa-solid fa-share-from-square" /> مشاركه
-            </button>
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="container">
-      <div class="products-cards">
-        <h5>أكملي إطلالتك ب:</h5>
-        <div class="row">
-          <AppGallery :listGallery="products" />
-        </div>
-        <div class="row">
-          <AppGallery :listGallery="listGalleryitem2" />
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="popup" v-if="popup" @click="popup = false">
-    <div class="popup-content">
-      <div class="popup-box">
-        <div class="popup-item popup-item-2" @click.stop="console.log(1)">
-          <font-awesome-icon
-            @click="popup = false"
-            class="exit-popup"
-            icon="fa-solid fa-x"
-          />
-          <img src="../../assets/images/important.png" alt="" />
-          <h4>تعليمات مهمة</h4>
-          <p class="mt-4 active-white">
-            لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل
-            ليتصور طريقه وضع لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم
-            لتعرض على العميل ليتصور طريقه وضع
-          </p>
-          <label for="" class="w-100 mt-3">
-            <input
-              class="input-radio radio-chekd"
-              type="checkbox"
-              id="radio-checkd"
-              name="radio-checkd"
-              v-model="notify"
-            />
-            <label for="radio-checkd" class="label-check">
-              <div class="box-checkd">
-                <font-awesome-icon icon="fa-solid fa-check" />
-              </div>
-              <p>ذكرني بميعاد التاجير قبل أيام</p>
-            </label>
-          </label>
+    </section>
+    <section>
+        <div class="container">
+            <Tabs v-model:value="value">
+                <TabList>
+                    <Tab value="0">Product Details</Tab>
+                    <Tab value="1">Rating & Reviews</Tab>
+                    <Tab value="2">FAQs</Tab>
+                </TabList>
+                <div class="dropdown-content mt-4">
 
-          <button @click="toAppointment" class="button-all"
-            >موافق</button
-          >
+                    <div class="d-flex gap-1 align-items-center">
+                        <h4>All Reviews </h4>
+                        <span class="color-trans">(451)</span>
+                    </div>
+
+                    <div class="d-flex gap-3 align-items-center flex-wrap">
+                        <button class="dropdown-prudact">
+                            <font-awesome-icon icon="fa-solid fa-sliders" />
+                        </button>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle dropdown-prudact" href="#" role="button"
+                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Latest
+                                <font-awesome-icon class="ms-2" icon="fa-solid fa-angle-down" />
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+
+                        <button class="button-all">Write a Review</button>
+
+                    </div>
+                </div>
+                <TabPanels>
+                    <TabPanel value="0">
+                        <p class="m-0">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia
+                            deserunt mollit anim id est laborum.
+                        </p>
+                    </TabPanel>
+                    <TabPanel value="1">
+                        <div class="row">
+                            <div class="col-lg-6" v-for="review in reviews" :key="review.id">
+                                <div class="carousel-box">
+                                    <p class="d-flex gap-1">
+                                        <font-awesome-icon v-for="n in 5" :key="n" class="star-icon"
+                                            icon="fa-solid fa-star" />
+                                    </p>
+                                    <div>
+                                        <h5 class="mb-3 mt-3">{{ review.name }} <img class="img-done"
+                                                src="../../assets/images/Frame-done.png" alt=""></h5>
+                                        <p>{{ review.feedback }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </TabPanel>
+                    <TabPanel value="2">
+                        <p class="m-0">
+                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                            voluptatum
+                            deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
+                            non
+                            provident, similique sunt in culpa
+                            qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+                            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+                            cumque nihil impedit quo minus.
+                        </p>
+                    </TabPanel>
+                </TabPanels>
+            </Tabs>
         </div>
-      </div>
+    </section>
+    <div class="content-center">
+        <nuxt-link to="/" class="button-all button-view">Load More Reviews</nuxt-link>
     </div>
-  </div>
+
+    <div>
+        <h1 class="text-center bold mt-5">You might also like</h1>
+    </div>
+
+    <section>
+        <div class="container">
+            <ProductCompnent />
+        </div>
+    </section>
 </template>
 
 <script setup>
-
-
-const toast = useToast();
-import { useUsersStoreauth } from '~/stores/useAuth';
-const usersStore = useUsersStoreauth();
-const {dataAuth} = storeToRefs(usersStore)
-const token = dataAuth.value?.token;
-
-
-
-
-
-
-
-// const localePath = useLocalePath();
-const products = ref([]);
-const listGalleryitem2 = ref([]);
-const size = ref(2)
+const { useFetchAPI, $fetchAPI, loading } = useAPI();
+const { data, error } = await useFetchAPI(`products/${useRoute().params.id}`);
+const product = ref({});
+product.value = data.value
+console.log(product.value)
 const number = ref(2);
-const notify = ref(0)
-const popup = ref(false);
-const { baseURL } = useAPI();
-
-// import rentalImage from "@/assets/images/Rectangle 25928.png";
-
-function clickk() {
-  console.log(size.value); // Logs the value of the checked radio button
-}
-
-
-
-
-// const numberPruduct = useCookie("numberPruduct");
-// const sizeId = useCookie("sizeId")
-
-
 function minus() {
-  if (number.value > 0) {
-    number.value--;
-  }
-}
-
-const product = ref("");
-const globalStore = useGlobalStore();
-
-
-  try {
-    const { data } = await useFetch(`product-details/${useRoute().params.id}`, {
-      responseType: "json",
-      method: "post",
-      baseURL: baseURL,
-      headers: {
-        ...(token && { Authorization: `Bearer ${token}` }),
-      },
-      body: {
-        "mac_address": "a7j3i78",
-      },
-    })
-
-
-    console.log(data.value)
-    product.value = data.value.data.product.product;
-    console.log(product.value, "products");
-    products.value = data.value.data.complete_your_look_with;
-    listGalleryitem2.value = data.value.data.we_choose_you;
-    
-    // numberPruduct.value = useRoute().params.id;
-  } catch(error) {
-    console.log(error)
-  }
-
-async function submitFavourite() {
-  try {
-    const { data } = await useFetch("product-favourite-action", {
-      responseType: "json",
-      method: "post",
-      baseURL: baseURL,
-      headers: {
-        ...(token && { Authorization: `Bearer ${token}` }),
-      },
-      body: {
-        product_id: useRoute().params.id,
-        "mac_address": "a7j3i78",
-      }
-      
-    })
-    if(data.value.key === "success") {
-      globalStore.showToast('success', data.value.msg , "", 2000)
-
-      if(data.value.msg === "تم الاضافه الي المفضله بنجاح") {
-        product.value.is_favorite = true
-      }else {
-        product.value.is_favorite = false
-      }
-      console.log(data.value)
-    }else {
-      globalStore.showToast('error', data.value.msg , "", 2000)
+    if (number.value > 0) {
+        number.value--;
     }
-  }catch(error) {
-    console.log(error)
-  }
 }
-
-// import rentalImage from "@/assets/images/Rectangle 25928.png";
-const images = ref(product.value.colors);
-const activeIndex = ref(0);
-
+const image = ref([
+    { image: product.value.image, alt: product.value.title }
+]);
 const responsiveOptions = ref([
     {
         breakpoint: '1300px',
@@ -319,52 +183,39 @@ const responsiveOptions = ref([
     {
         breakpoint: '575px',
         numVisible: 1
-    }
+    },
 ]);
+const value = ref('1');
+const reviews = ref([
+    { id: 1, name: "Sarah M.", feedback: "I'm blown away by the quality and style of the clothes I received from Shop.co!" },
+    { id: 2, name: "John D.", feedback: "Amazing designs and top-notch quality! Highly recommend." },
+    { id: 3, name: "Lisa K.", feedback: "Affordable and stylish! My go-to store for fashion needs." },
+    { id: 3, name: "Lisa K.", feedback: "Affordable and stylish! My go-to store for fashion needs." },
+    { id: 3, name: "Lisa K.", feedback: "Affordable and stylish! My go-to store for fashion needs." },
+    { id: 3, name: "Lisa K.", feedback: "Affordable and stylish! My go-to store for fashion needs." }
+]);
+const globalHome = useGlobalStore();
+const addCart = async () => {
+    const cart = {
+        products: [{
+            id: product.value.id,
+            quantity: number.value,
+            title: product.value.title,
+            price: product.value.price,
+            description: product.value.description,
+            category: product.value.category,
+            image: product.value.image
+        }]
+    };
+    try {
 
+        globalHome.cartsArray.push(cart);
+        console.log(globalHome.cartsArray)
 
-
-
-
-
-const notifyValue = computed(() => (notify.value ? 1 : 0));
-
-const router = useRouter();
-import { useUsersPruduct } from '#build/imports';
-const usePruduct = useUsersPruduct()
-function toAppointment() {
-  usePruduct.cart = {
-    sizeid: size.value,
-    numberPruduct: useRoute().params.id,
-    quantity: number.value,
-    notify: notifyValue.value,
-  }
-  router.push("/products/appointment")
-}
-
-
-
-
-
-
-
-const prevImage = () => {
-  activeIndex.value =
-    (activeIndex.value - 1 + images.value.length) % images.value.length;
-};
-
-// Next Image
-const nextImage = () => {
-  activeIndex.value = (activeIndex.value + 1) % images.value.length;
+        navigateTo("/cart")
+    } catch (error) {
+        console.error('Error adding to cart:', error);
+    }
 };
 
 </script>
-<style scoped>
-/* Add custom styling for the fancy image preview */
-.fancyImg {
-  margin-top: 1rem;
-  max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-</style>

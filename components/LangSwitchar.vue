@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { computed } from "vue";
 const { locales, locale, setLocale, localeProperties } = useI18n();
 
@@ -39,4 +39,4 @@ watch(
       icon="fa-solid fa-chevron-down"
     />
   </div>
-</template>
+</template> -->

@@ -1,138 +1,148 @@
 <template>
-  <div>
-    <Skeleton v-if="globalHome.loading" class="mb-2 loading-Galleria"></Skeleton>
-    <section v-else class="home-inner home-slider mt-0">
-      <Galleria :value="images" :numVisible="5" autoPlay="true" :showThumbnails="false" :showIndicators="true"
-        :circular="true">
-        <template #item="slotProps">
-          <img class="img-slider-home" :src="slotProps.item.image" :alt="slotProps.item.alt"
-            style="width: 100%; display: block" />
-          <div class="overlay">
-            <h3>{{ slotProps.item.title }}</h3>
-            <h5>{{ slotProps.item.description }}</h5>
-          </div>
-        </template>
-      </Galleria>
+  <!-- <h1>{{ $t("home") }}</h1> -->
+  <section class="section-parent">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="title-parent">FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
+          <p class="mt-3">Browse through our diverse range of meticulously crafted garments, designed to bring out your
+            individuality and cater to your sense of style.</p>
+          <button class="button-all mt-4">Show Now</button>
 
-
-    </section>
-
-    <section class="mt-5">
-      <div class="container">
-        <div class="occasions-content">
-          <Skeleton v-if="globalHome.loading" class="text-center">اتانق لمناسبه</Skeleton>
-          <h3 class="text-center" v-else>اتانق لمناسبه</h3>
-          <nuxt-link>
-            <div class="occasions-box">
-
-              <div v-if="globalHome.loading" v-for="item in 5" :key="item.id">
-              <Skeleton class="mb-2 occasions-main"></Skeleton>
-              </div>
-              <nuxt-link v-else :to="localePath(`/shoping/${occas.id}`)" class="occasions-main" v-for="occas in occasions"
-                :key="occas.id">
-           
-              <img :src="occas.image" alt="" />
-              <h6>{{ occas.name }}</h6>
-              </nuxt-link>
+          <div class="mb-5 box-sallery">
+            <div class="mt-4">
+              <h1 class="title-sallery">200+</h1>
+              <h6 class="text-trans">International Brands</h6>
             </div>
-          </nuxt-link>
-        </div>
-      </div>
-    </section>
+            <div class="mt-4">
+              <h1 class="title-sallery">2,000+</h1>
+              <h6 class="text-trans">International Brands</h6>
+            </div>
+            <div class="mt-4">
+              <h1 class="title-sallery">30,000+</h1>
+              <h6 class="text-trans">International Brands</h6>
+            </div>
+          </div>
 
-    <section>
-      <div class="container">
-        <h4>المنتجات الاحدث</h4>
-        <div class="row">
-          <AppGallery :listGallery="recent_products" :is-loading="globalHome.loading" />
         </div>
-      </div>
-    </section>
-    <section>
-      <div class="container">
-        <div class="content-sohial">
-          <h3>يمكنك الوصول إلينا عبر</h3>
-          <div class="box-sohial">
-            <NuxtLink :to="social.link" v-for="social in socials" :key="social.id">
-              <img :src="social.icon" alt="" />
-            </NuxtLink>
+        <div class="col-lg-6">
+          <div class="parent-box-img">
+            <img class="img-parent" src="../assets/images/Rectangle 2.png" alt="">
+            <img class="star-img" src="../assets/images/Vector (10).png" alt="">
+            <img class="star-img-2" src="../assets/images/Vector (31).png" alt="">
           </div>
         </div>
-      </div>
-    </section>
-    <div class="show-more">
-      <div class="container">
-        <NuxtLink class="show-more-link" to="/offers">عرض المزيد</NuxtLink>
       </div>
     </div>
-    <section>
+    <div class="inner">
       <div class="container">
-        <h4>العروض</h4>
-        <div class="row">
-          <AppGallery :listGallery="offers" :is-loading="globalHome.loading" />
+        <div class="inner-content">
+          <img src="../assets/images/Vector (20).png" alt="">
+          <img src="../assets/images/Vector (21).png" alt="">
+          <img src="../assets/images/Vector (22).png" alt="">
+          <img src="../assets/images/Group (23).png" alt="">
+          <img src="../assets/images/Vector (24).png" alt="">
         </div>
       </div>
-    </section>
-    <section class="mt-5">
-      <div class="container">
-        <h4>المننتجات الاكثر طلبا</h4>
-        <div class="row">
-          <AppGallery :listGallery="top_ordered_products" :is-loading="globalHome.loading" />
+    </div>
+  </section>
+  <section class="mg-bottom">
+    <h1 class="text-center bold">NEW ARRIVALS</h1>
+    <div class="container">
+      <ProductCompnent />
+      <div class="content-center">
+        <nuxt-link to="/" class="button-all button-view">View All</nuxt-link>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h1 class="text-center bold">TOP SELLING</h1>
+    <div class="container">
+      <ProductCompnent />
+      <div class="content-center">
+        <nuxt-link to="/" class="button-all button-view">View All</nuxt-link>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="section-styles">
+        <h1 class="text-center bold">BROWSE BY dress STYLE</h1>
+        <div class="row mt-5">
+          <div class="col-lg-4">
+            <div class="styles-box">
+              <h5>Casual</h5>
+              <img src="../assets/images/image 11.png" alt="">
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="styles-box">
+              <h5>Casual</h5>
+              <img src="../assets/images/image 13.png" alt="">
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="styles-box">
+              <h5>Casual</h5>
+              <img src="../assets/images/image 12.png" alt="">
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="styles-box">
+              <h5>Casual</h5>
+              <img src="../assets/images/image 14.png" alt="">
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    <section class="mt-5">
-      <div class="container">
-        <div class="content-bettwen mb-3">
-          <h4>الخدمات</h4>
-          <NuxtLink class="show-more-link" to="/offers">عرض المزيد</NuxtLink>
-        </div>
-        <AppServices />
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h1>OUR HAPPY CUSTOMERS</h1>
+
+      <Carousel :itemsToShow="3" :wrapAround="true" :breakpoints="breakpoints">
+        <template #addons>
+          <Navigation />
+        </template>
+
+
+        <Slide v-for="review in reviews" :key="review.id">
+          <div class="carousel-box">
+            <p class="d-flex gap-1">
+              <font-awesome-icon v-for="n in 5" :key="n" class="star-icon" icon="fa-solid fa-star" />
+            </p>
+            <div>
+              <h5 class="mb-3 mt-3">{{ review.name }}</h5>
+              <p>{{ review.feedback }}</p>
+            </div>
+          </div>
+        </Slide>
+    
+
+      </Carousel>
+    </div>
+  </section>
 </template>
-
 <script setup>
-const localePath = useLocalePath();
+import { Carousel, Slide, Navigation, Pagination} from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
+const breakpoints = {
+  1024: { itemsToShow: 3 },
+  768: { itemsToShow: 3 },
+  480: { itemsToShow: 1 },
+  450: { itemsToShow: 1 },
+  400: { itemsToShow: 1 },
+  300: { itemsToShow: 1 },
+};
+
+const reviews = ref([
+  { id: 1, name: "Sarah M.", feedback: "I'm blown away by the quality and style of the clothes I received from Shop.co!" },
+  { id: 2, name: "John D.", feedback: "Amazing designs and top-notch quality! Highly recommend." },
+  { id: 3, name: "Lisa K.", feedback: "Affordable and stylish! My go-to store for fashion needs." }
+]);
 
 
-
-
-const images = ref();
-const occasions = ref([]);
-const offers = ref();
-const recent_products = ref();
-const top_ordered_products = ref();
-const socials = ref()
-/// data home 
-
-
-const globalHome = useUsersStore();
-// globalHome.fetchUsers();
-globalHome.loading = true; // Set loading to true before data fetch
-
-
-
-onMounted(async () => {
-  const cockie = useCookie("mac_addressGlobal");
-
-  if (!cockie.value) {
-    // Regenerate MAC address and fetch data
-    await globalHome.functionMacaddress();
-  }
-  // Fetch data directly if MAC address exists
-  await globalHome.fetchUsers();
-
-  // Update the state with fetched data
-  if (globalHome.dataHome?.data) {
-    const homeData = globalHome.dataHome.data;
-    images.value = homeData.slider;
-    occasions.value = homeData.occasions;
-    offers.value = homeData.offers;
-    recent_products.value = homeData.recent_products;
-    top_ordered_products.value = homeData.top_ordered_products;
-    socials.value = homeData.socials;
-  }
-});
 </script>

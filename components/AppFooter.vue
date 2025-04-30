@@ -1,114 +1,94 @@
 <template>
   <footer>
     <div class="container">
-      <ul class="links-footer">
-        <li class="list-foot">
-          <NuxtLink :to="localePath('/')">الرئسيه</NuxtLink>
-          <NuxtLink :to="localePath('/orders')" @click="clickRequest()">طلباتي</NuxtLink>
-        </li>
-        <li class="list-foot">
-          <NuxtLink :to="localePath('/')">المحفظه</NuxtLink>
-          <NuxtLink :to="localePath('termsConditions')"
-            >الشروط والاحكام</NuxtLink
-          >
-        </li>
-        <li class="list-foot">
-          <NuxtLink :to="localePath('weare')">من نحن</NuxtLink>
-          <NuxtLink :to="localePath('/visionMission')"
-            >الرؤيه والرسالة</NuxtLink
-          >
-        </li>
-        <li class="list-logo-footer">
-          <div class="content-logo content-logo-foot">
-            <img
-              class="img-logo-footer"
-              src="../assets/images/Group.png"
-              alt=""
-            />
-            <ul class="head-sohial foot-sohial">
-              <li class="item-sohial" v-for="social in arraySocials" :key="social.id">
-              <NuxtLink :to="social.link"
-                >
-                <img class="img-sohial" :src="social.icon" alt="" />
-              </NuxtLink>
-            </li>
-            </ul>
+      <div class="foot-content">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h2 class="text-white mb-3">STAY UPTO DATE ABOUT OUR LATEST OFFERS</h2>
           </div>
-        </li>
-        <li class="list-foot">
-          <NuxtLink :to="localePath('contact')">اتصل بنا</NuxtLink>
-        </li>
-        <li></li>
-        <li class="list-foot">
-          <button @click="complaints"
-            >الشكاوي والمقترحات</button
-          >
-        </li>
-      </ul>
-    </div>
-  </footer>
-  <div class="popup" v-if="popup">
-    <div class="popup-content">
-      <div class="popup-box">
-        <div class="popup-itemf-auts">
-          <font-awesome-icon
-          @click="popup = false"
-          class="exit-popup"
-          icon="fa-solid fa-x"
-        />
-        <img class="img-not-token" src="../assets/images/alert-warning.svg" alt="">
-        <h5 class="mt-4">يجب عليك تسجيل الدخول اولا</h5>
-        <nuxt-link class="button-all mt-4" to="/login">تسجيل الدخول</nuxt-link>
+          <div class="col-lg-6">
+            <form>
+              <div class="content-search content-foot">
+                <img src="../assets/images/Vector (112).png" alt="">
+                <input placeholder="Enter your email address" type="search">
+              </div>
+              <button class="content-search content-foot submit-foot" type="submit">Subscribe to Newsletter</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="img-logo" src="../assets/images/SHOP.CO.png" alt="">
+            <p class="color-trans mt-4">We have clothes that suits your style and which you’re proud to wear. From women
+              to men.</p>
+            <div class="d-flex gap-3 mt-4 mb-4">
+              <nuxt-link class="sohail-icon" to="/">
+                <font-awesome-icon icon="fa-brands fa-twitter" />
+              </nuxt-link>
+              <nuxt-link class="sohail-icon" to="/">
+                <font-awesome-icon icon="fa-brands fa-facebook-f" />
+              </nuxt-link>
+              <nuxt-link class="sohail-icon" to="/">
+                <font-awesome-icon icon="fa-brands fa-instagram" />
+              </nuxt-link>
+              <nuxt-link class="sohail-icon" to="/">
+                <font-awesome-icon icon="fa-brands fa-github" />
+              </nuxt-link>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <ul class="foot-links">
+              <li><h4>Company</h4></li>
+              <li><nuxt-link to="/">About</nuxt-link></li>
+              <li><nuxt-link to="/">Features</nuxt-link></li>
+              <li><nuxt-link to="/">Works</nuxt-link></li>
+              <li><nuxt-link to="/">Career</nuxt-link></li>
+            </ul>
+          </div>
+          <div class="col-lg-2">
+            <ul class="foot-links">
+              <li><h4>Help</h4></li>
+              <li><nuxt-link to="/">Customer Support</nuxt-link></li>
+              <li><nuxt-link to="/">Delivery Details</nuxt-link></li>
+              <li><nuxt-link to="/">Terms & Conditions</nuxt-link></li>
+              <li><nuxt-link to="/">Privacy Policy</nuxt-link></li>
+            </ul>
+          </div>
+          <div class="col-lg-2">
+            <ul class="foot-links">
+              <li><h4>FAQ</h4></li>
+              <li><nuxt-link to="/">Account</nuxt-link></li>
+              <li><nuxt-link to="/">Manage Deliveries</nuxt-link></li>
+              <li><nuxt-link to="/">Orders</nuxt-link></li>
+              <li><nuxt-link to="/">Payments</nuxt-link></li>
+            </ul>
+          </div>
+          <div class="col-lg-2">
+            <ul class="foot-links">
+              <li><h4>Resources</h4></li>
+              <li><nuxt-link to="/">Free eBooks</nuxt-link></li>
+              <li><nuxt-link to="/">Development Tutorial</nuxt-link></li>
+              <li><nuxt-link to="/">How to - Blog</nuxt-link></li>
+              <li><nuxt-link to="/">Youtube Playlist</nuxt-link></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="content-bettwen">
+          <h5 class="color-trans">Shop.co © 2000-2023, All Rights Reserved</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <img src="../assets/images/Badge.png" alt="">
+            <img src="../assets/images/Badge (1).png" alt="">
+            <img src="../assets/images/Badge (2).png" alt="">
+            <img src="../assets/images/Badge (3).png" alt="">
+            <img src="../assets/images/Badge (4).png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 </template>
-<script setup>
-// complaintsSuggestions
-const localePath = useLocalePath();
-const arraySocials = ref([]);
-const globalHome = useUsersStore();
-const router = useRouter();
-onMounted(async () => {
-  const cockie = useCookie("mac_addressGlobal");
-
-  if (!cockie.value) {
-    // Regenerate MAC address and fetch data
-    await globalHome.functionMacaddress();
-  }
-  // Fetch data directly if MAC address exists
-  await globalHome.fetchUsers();
-
-  // Update the state with fetched data
-  if (globalHome.dataHome?.data) {
-    const homeData = globalHome.dataHome.data;
-    arraySocials.value = homeData.socials;
-  }
-});
-
-const popup = ref(false);
-const tokenCookie = useCookie("token");
-// const clickRequest = () => {
-//   if (!tokenCookie.value) {
-//     popup.value = true;
-//   } else {
-//     router.push(`${localePath("/orders")}`)
-//   }
-// };
-function clickRequest(e) {
-  if(!tokenCookie.value) {
-    popup.value = true;
-    e.preventDefault();
-  }
-}
-
-const complaints = () => {
-  if(!tokenCookie.value) {
-    popup.value = true;
-  } else {
-    router.push(`${localePath("/complaintsSuggestions")}`)
-  }
-}
-
-</script>

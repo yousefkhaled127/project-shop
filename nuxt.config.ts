@@ -16,27 +16,27 @@ export default defineNuxtConfig({
     layoutTransition: { name: "layout", mode: "in-out" },
   },
   modules: ["@primevue/nuxt-module", "@nuxtjs/i18n", "@pinia/nuxt","pinia-plugin-persistedstate/nuxt",],
-  i18n: {
-    // lazy: true,
-    langDir: "locales",
-    strategy: "prefix_except_default",
-    locales: [
-      {
-        code: "ar",
-        iso: "ar",
-        name: "العربيه",
-        file: "ar.json",
-        dir: "rtl",
-      },
-      {
-        code: "en",
-        iso: "en",
-        name: "english",
-        file: "en.json",
-        dir: "ltr",
-      },
-    ],
-  },
+  // i18n: {
+  //   // lazy: true,
+  //   langDir: "locales",
+  //   strategy: "prefix_except_default",
+  //   locales: [
+  //     {
+  //       code: "ar",
+  //       iso: "ar",
+  //       name: "العربيه",
+  //       file: "ar.json",
+  //       dir: "rtl",
+  //     },
+  //     {
+  //       code: "en",
+  //       iso: "en",
+  //       name: "english",
+  //       file: "en.json",
+  //       dir: "ltr",
+  //     },
+  //   ],
+  // },
   plugins: [
     { src: "~/plugins/bootstrap.js", mode: "client" },
     { src: "~/plugins/fontawesome.js", mode: "client" },
@@ -50,7 +50,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseURL: "https://backend.rawrentals.org/api/", // العنوان الأساسي للـ API
+      baseURL: "https://fakestoreapi.com/", // العنوان الأساسي للـ API
     },
   },
 

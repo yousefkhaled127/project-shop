@@ -7,10 +7,12 @@ export const useGlobalStore = defineStore('global', {
         message: 'Error Message',
         time: 1000
       },
+      cartsArray: [],
       toastVisible: false,
       mac_address: null,
       adressglobal: "idjmfmp",
     }),
+    persist: true, // ✅ If you're using `pinia-plugin-persistedstate`
     actions: {
       functionMacaddress() {
         const characters = 'abcdefghijklmnopqrstuvwxyz'; // Define the characters to use
