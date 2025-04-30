@@ -172,7 +172,9 @@ footer {
   position: relative;
   /* margin-top: 13rem; */
 }
-
+.footer a {
+  color: black !important;
+}
 .p-toast-message-content {
   align-items: center !important;
   /* background: #36a336 !important; */

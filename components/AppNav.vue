@@ -66,8 +66,6 @@
 </template>
 
 <script setup>
-const localePath = useLocalePath();
-
 
 
 function handleNavigation() {
@@ -244,10 +242,6 @@ input:focus {
 
   .links-show {
     right: 0;
-  }
-
-  .router-link-active {
-    color: white !important;
   }
 
   .btn-show-links {
